@@ -1,8 +1,12 @@
 package com.example.genshininfoapp;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -11,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +29,13 @@ public class CharactersPresenter extends BaseAdapter implements CharactersContra
     private CharactersContract.View view;
     ArrayList<CharactersModel> characters;
     private CharactersPresenter asGenshinCharacterAdapter;
+
+    private Context context;
+    public CharactersPresenter (Context context, ArrayList<CharactersModel> characters){
+        this.context = context;
+        this.characters = characters;
+    }
+
 
     @Override
     public void retrieveResult() {
@@ -62,7 +74,7 @@ public class CharactersPresenter extends BaseAdapter implements CharactersContra
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //displaying the error in toast if occurrs
-                        Toast.makeText(CharactersPresenter.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(CharactersPresenter.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -79,12 +91,12 @@ public class CharactersPresenter extends BaseAdapter implements CharactersContra
 
     @Override
     public int getCount() {
-        return 0;
+        return characters.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return characters.get(position);
     }
 
     @Override
@@ -94,6 +106,29 @@ public class CharactersPresenter extends BaseAdapter implements CharactersContra
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View item = inflater.inflate(R.layout.item_characters_list,null,true);
+
+        TextView tvName, tvDescription, tvGender, tvBirthday, tvVision, tvWeapon;
+        ImageView imageView;
+
+        tvName = item.findViewById(R.id.tvName);
+        tvDescription = item.findViewById(R.id.tvDescription);
+        tvGender = item.findViewById(R.id.tvGender);
+        tvBirthday = item.findViewById(R.id.tvBirthday);
+        tvVision = item.findViewById(R.id.tvVision);
+        tvWeapon = item.findViewById(R.id.tvWeapon);
+
+        tvName.setText(characters.get(position).getName());
+        tvDescription.setText(characters.get(position).getDescription());
+        tvGender.setText(characters.get(position).getGender());
+        tvBirthday.setText(characters.get(position).getBirthday());
+        tvVision.setText(characters.get(position).getVision());
+        tvWeapon.setText(characters.get(position).getWeapon());
+
+        imageView = item.findViewById(R.id.ivImage);
+        Picasso.get().load(characters.get(position).getImageURL()).into(imageView);
+        return item;
     }
 }
