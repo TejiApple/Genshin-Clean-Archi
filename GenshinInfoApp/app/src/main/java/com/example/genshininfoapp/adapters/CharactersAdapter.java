@@ -1,4 +1,4 @@
-package com.example.genshininfoapp;
+package com.example.genshininfoapp.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.genshininfoapp.R;
 import com.example.genshininfoapp.models.CharactersModel;
 import com.squareup.picasso.Picasso;
 
