@@ -1,10 +1,13 @@
-package com.example.genshininfoapp;
+package com.example.genshininfoapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.genshininfoapp.R;
+import com.example.genshininfoapp.ui.characters.CharactersActivity;
 
 public class MainActivity extends AppCompatActivity {
 

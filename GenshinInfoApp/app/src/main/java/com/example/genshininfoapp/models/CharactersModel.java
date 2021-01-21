@@ -1,4 +1,4 @@
-package com.example.genshininfoapp;
+package com.example.genshininfoapp.models;
 
 public class CharactersModel {
     String id;
@@ -10,6 +10,14 @@ public class CharactersModel {
     String vision;
     String weapon;
     String imageURL;
+
+    public CharactersModel(String description) {
+        this.description = description;
+    }
+
+    public CharactersModel() {
+
+    }
 
     public String getImageURL() {
         return imageURL;
