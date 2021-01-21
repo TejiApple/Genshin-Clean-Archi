@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.genshininfoapp.R;
 import com.example.genshininfoapp.ui.characters.CharactersActivity;
 import com.example.genshininfoapp.ui.domains.ArtifactsActivity;
+import com.example.genshininfoapp.ui.weapons.WeaponsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToWeapons(View view) {
-//        intent = new Intent(this, WeaponsActivity.class);
-//        startActivity(intent);
+        intent = new Intent(this, WeaponsActivity.class);
+        startActivity(intent);
     }
 }
