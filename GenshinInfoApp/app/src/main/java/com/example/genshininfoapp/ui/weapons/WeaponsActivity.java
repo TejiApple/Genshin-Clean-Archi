@@ -3,11 +3,16 @@ package com.example.genshininfoapp.ui.weapons;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.genshininfoapp.R;
 import com.example.genshininfoapp.adapters.WeaponAdapter;
+import com.example.genshininfoapp.models.WeaponDetailsModel;
 import com.example.genshininfoapp.models.WeaponModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +27,7 @@ public class WeaponsActivity extends AppCompatActivity {
 
     ListView listView;
     private WeaponAdapter weaponAdapter;
+    ArrayAdapter<WeaponDetailsModel> arrayAdapter;
 
     DatabaseReference dbRef;
 
@@ -33,6 +39,8 @@ public class WeaponsActivity extends AppCompatActivity {
         listView = findViewById(R.id.lvWeapons);
 
         setupListview();
+
+        onItemClick();
     }
 
     private void setupListview(){
@@ -60,4 +68,35 @@ public class WeaponsActivity extends AppCompatActivity {
         });
     }
 
+    public void onItemClick(){
+        dbRef = FirebaseDatabase.getInstance().getReference();
+
+        ArrayList<WeaponDetailsModel> weaponDetails = new ArrayList<>();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                dbRef.child("Weapon Details").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot weaponDetail: snapshot.getChildren()){
+                            WeaponDetailsModel value = weaponDetail.getValue(WeaponDetailsModel.class);
+                            weaponDetails.add(value);
+                        }
+
+                        WeaponDetailsModel details = arrayAdapter.getItem(position);
+                            Intent intent = new Intent(WeaponsActivity.this, WeaponDetailsActivity.class);
+                            listView.setAdapter(arrayAdapter);
+                            intent.putExtra("object", details);
+                            startActivity(intent);
+                        }
+
+                    @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                   }
+               });
+            }
+      });
+    }
 }

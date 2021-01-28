@@ -6,10 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.genshininfoapp.R;
 import com.example.genshininfoapp.models.WeaponModel;
+import com.example.genshininfoapp.ui.MainActivity;
+import com.example.genshininfoapp.ui.weapons.WeaponsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
