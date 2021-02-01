@@ -48,16 +48,18 @@ public class WeaponAdapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View item = inflater.inflate(R.layout.item_weapons_list,null,true);
 
-        TextView tvName, tvType, tvRarity;
+        TextView tvName, tvType, tvRarity, tvSkills;
         ImageView imageView;
 
         tvName = item.findViewById(R.id.tvWeaponName);
         tvType = item.findViewById(R.id.tvWeaponType);
         tvRarity = item.findViewById(R.id.tvWeaponRarity);
+        tvSkills = item.findViewById(R.id.tvWeaponSkills);
 
         tvName.setText(weapon.get(position).getName());
         tvType.setText(weapon.get(position).getType());
         tvRarity.setText(weapon.get(position).getRarity());
+        tvSkills.setText(weapon.get(position).getSkill());
 
         imageView = item.findViewById(R.id.ivImage);
         Picasso.get().load(weapon.get(position).getImageURL()).into(imageView);

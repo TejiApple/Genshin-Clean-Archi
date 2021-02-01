@@ -13,6 +13,7 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,5 +77,24 @@
             android:text="rarity"
             app:layout_constraintStart_toEndOf="@+id/tvWeapon3"
             app:layout_constraintTop_toBottomOf="@+id/tvWeaponType"/>
+
+        <TextView
+            android:id="@+id/tvWeapon4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Skill: "
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvWeapon3"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvWeaponSkills"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="skills"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWeapon4"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

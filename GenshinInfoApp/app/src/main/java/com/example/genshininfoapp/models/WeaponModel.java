@@ -7,6 +7,7 @@ public class WeaponModel {
     String atk;
     String type;
     String imageURL;
+    String skill;
 
     public String getImageURL() {
         return imageURL;
@@ -54,5 +55,13 @@ public class WeaponModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
     }
 }

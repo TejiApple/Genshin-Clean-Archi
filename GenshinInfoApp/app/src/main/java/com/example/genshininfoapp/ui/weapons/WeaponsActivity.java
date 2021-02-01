@@ -27,7 +27,7 @@ public class WeaponsActivity extends AppCompatActivity {
 
     ListView listView;
     private WeaponAdapter weaponAdapter;
-    ArrayAdapter<WeaponDetailsModel> arrayAdapter;
+    ArrayList<WeaponDetailsModel> arrayAdapter;
 
     DatabaseReference dbRef;
 
@@ -40,7 +40,7 @@ public class WeaponsActivity extends AppCompatActivity {
 
         setupListview();
 
-        onItemClick();
+//        onItemClick();
     }
 
     private void setupListview(){
@@ -68,35 +68,35 @@ public class WeaponsActivity extends AppCompatActivity {
         });
     }
 
-    public void onItemClick(){
-        dbRef = FirebaseDatabase.getInstance().getReference();
-
-        ArrayList<WeaponDetailsModel> weaponDetails = new ArrayList<>();
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                dbRef.child("Weapon Details").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot weaponDetail: snapshot.getChildren()){
-                            WeaponDetailsModel value = weaponDetail.getValue(WeaponDetailsModel.class);
-                            weaponDetails.add(value);
-                        }
-
-                            WeaponDetailsModel details = arrayAdapter.getItem(position);
-                            Intent intent = new Intent(WeaponsActivity.this, WeaponDetailsActivity.class);
-//                            listView.setAdapter(arrayAdapter);
-                            intent.putExtra("skill", details);
-                            startActivity(intent);
-                        }
-
-                    @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                   }
-               });
-            }
-      });
-    }
+//    public void onItemClick(){
+//        dbRef = FirebaseDatabase.getInstance().getReference();
+//
+//        ArrayList<WeaponDetailsModel> weaponDetails = new ArrayList<>();
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                dbRef.child("Weapon Details").addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+////                        for(DataSnapshot weaponDetail: snapshot.getChildren()){
+////                            WeaponDetailsModel value = weaponDetail.getValue(WeaponDetailsModel.class);
+////                            weaponDetails.add(value);
+////                        }
+//
+//                            WeaponDetailsModel details = arrayAdapter.get(position);
+//                            Intent intent = new Intent(WeaponsActivity.this, WeaponDetailsActivity.class);
+////                            listView.setAdapter(arrayAdapter);
+//                            intent.putExtra("skill", details);
+//                            startActivity(intent);
+//                        }
+//
+//                    @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                   }
+//               });
+//            }
+//      });
+//    }
 }
