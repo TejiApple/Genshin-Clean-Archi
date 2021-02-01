@@ -33,7 +33,6 @@
 
         <TextView
             android:id="@+id/tvWeaponName"
-            android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="weapon name"
@@ -44,7 +43,7 @@
             android:id="@+id/tvWeapon2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:text="Type: "
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/tvWeapon1"
@@ -52,7 +51,7 @@
 
         <TextView
             android:id="@+id/tvWeaponType"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="type"
@@ -63,7 +62,7 @@
             android:id="@+id/tvWeapon3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:layout_marginStart="20dp"
             android:text="Rarity: "
             android:textStyle="bold"
@@ -72,7 +71,7 @@
 
         <TextView
             android:id="@+id/tvWeaponRarity"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="rarity"
@@ -83,7 +82,7 @@
             android:id="@+id/tvWeapon4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:text="Base ATK: "
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/tvWeapon2"
@@ -91,7 +90,7 @@
 
         <TextView
             android:id="@+id/tvWeaponATK"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="base_atk"
@@ -102,7 +101,7 @@
             android:id="@+id/tvWeapon5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:text="Secondary Stat: "
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvWeaponATK"
@@ -110,7 +109,7 @@
 
         <TextView
             android:id="@+id/tvWeaponSubstat"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sub_stat"
@@ -121,7 +120,7 @@
             android:id="@+id/tvWeapon6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:text="Skill: "
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvWeapon5"

@@ -5,6 +5,7 @@ public class WeaponModel {
     String name;
     String rarity;
     String atk;
+    String substat;
     String type;
     String imageURL;
     String skill;
@@ -47,6 +48,14 @@ public class WeaponModel {
 
     public void setAtk(String atk) {
         this.atk = atk;
+    }
+
+    public String getSubstat() {
+        return substat;
+    }
+
+    public void setSubstat(String substat) {
+        this.substat = substat;
     }
 
     public String getType() {
