@@ -84,10 +84,10 @@ public class WeaponsActivity extends AppCompatActivity {
                             weaponDetails.add(value);
                         }
 
-                        WeaponDetailsModel details = arrayAdapter.getItem(position);
+                            WeaponDetailsModel details = arrayAdapter.getItem(position);
                             Intent intent = new Intent(WeaponsActivity.this, WeaponDetailsActivity.class);
-                            listView.setAdapter(arrayAdapter);
-                            intent.putExtra("object", details);
+//                            listView.setAdapter(arrayAdapter);
+                            intent.putExtra("skill", details);
                             startActivity(intent);
                         }
 
