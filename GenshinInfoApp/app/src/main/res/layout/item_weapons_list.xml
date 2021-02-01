@@ -64,10 +64,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
             android:text="Rarity: "
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/tvWeapon2"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tvWeaponName"
+            app:layout_constraintStart_toEndOf="@+id/tvWeaponType"/>
 
         <TextView
             android:id="@+id/tvWeaponRarity"
@@ -76,25 +77,64 @@
             android:layout_height="wrap_content"
             android:text="rarity"
             app:layout_constraintStart_toEndOf="@+id/tvWeapon3"
-            app:layout_constraintTop_toBottomOf="@+id/tvWeaponType"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvWeaponName"/>
 
         <TextView
             android:id="@+id/tvWeapon4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:text="Base ATK: "
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tvWeapon2"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvWeaponATK"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="base_atk"
+            app:layout_constraintStart_toEndOf="@+id/tvWeapon4"
+            app:layout_constraintTop_toBottomOf="@+id/tvWeaponType"/>
+
+        <TextView
+            android:id="@+id/tvWeapon5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Secondary Stat: "
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvWeaponATK"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvWeaponSubstat"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sub_stat"
+            app:layout_constraintStart_toEndOf="@+id/tvWeapon5"
+            app:layout_constraintTop_toBottomOf="@+id/tvWeapon4"/>
+
+        <TextView
+            android:id="@+id/tvWeapon6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Skill: "
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/tvWeapon3"
+            app:layout_constraintTop_toBottomOf="@id/tvWeapon5"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/tvWeaponSkills"
             android:layout_marginTop="4dp"
+            android:paddingEnd="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="skills"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvWeapon4"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvWeapon6"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
