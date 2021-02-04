@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.genshininfoapp.R;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -26,6 +29,9 @@ import java.util.ArrayList;
 public class WeaponsActivity extends AppCompatActivity {
 
     ListView listView;
+    EditText etSearch;
+    Button btnSearch;
+
     private WeaponAdapter weaponAdapter;
     ArrayList<WeaponDetailsModel> arrayAdapter;
 
@@ -38,9 +44,27 @@ public class WeaponsActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.lvWeapons);
 
+        etSearch = findViewById(R.id.etSearch);
+        btnSearch = findViewById(R.id.btnSearch);
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String etValue = etSearch.getText().toString();
+
+                firebaseSearch(etValue);
+            }
+        });
+
         setupListview();
 
 //        onItemClick();
+    }
+
+    private void firebaseSearch(String etValue) {
+        dbRef = FirebaseDatabase.getInstance().getReference("Weapons");
+        Query firebaseSearch = dbRef.orderByChild("name").startAt(etValue).endAt(etValue + "\uf8ff");
+        
     }
 
     private void setupListview(){
