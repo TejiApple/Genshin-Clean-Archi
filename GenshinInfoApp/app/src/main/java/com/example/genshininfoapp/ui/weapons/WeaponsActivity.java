@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,7 +40,7 @@ public class WeaponsActivity extends AppCompatActivity {
     Button btnSearch;
 
     private WeaponAdapter weaponAdapter;
-    ArrayList<WeaponDetailsModel> arrayAdapter;
+    ArrayList<WeaponModel> weaponModelsList;
 
     DatabaseReference dbRef;
 
@@ -50,6 +52,22 @@ public class WeaponsActivity extends AppCompatActivity {
         listView = findViewById(R.id.lvWeapons);
 
         etSearch = findViewById(R.id.etSearch);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                firebaseSearch(s.toString());
+            }
+        });
         btnSearch = findViewById(R.id.btnSearch);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -67,55 +85,31 @@ public class WeaponsActivity extends AppCompatActivity {
     }
 
     private void firebaseSearch(String etValue) {
-        dbRef = FirebaseDatabase.getInstance().getReference("Weapons");
-        Query firebaseSearch = dbRef.orderByChild("name").startAt(etValue).endAt(etValue+"\uf8ff");
-
-        FirebaseListAdapter<WeaponModel> adapter = new FirebaseListAdapter<WeaponModel>(this,  WeaponModel.class, R.layout.item_weapons_list, firebaseSearch) {
-            @Override
-            protected void populateView(View v, WeaponModel model, int position) {
-//
-//                TextView tvName, tvType, tvRarity, tvSkills, tvATK, tvSubstat;
-//                ImageView imageView;
-//
-//                tvName = findViewById(R.id.tvWeaponName);
-//                tvType = findViewById(R.id.tvWeaponType);
-//                tvRarity = findViewById(R.id.tvWeaponRarity);
-//                tvSkills = findViewById(R.id.tvWeaponSkills);
-//                tvATK = findViewById(R.id.tvWeaponATK);
-//                tvSubstat = findViewById(R.id.tvWeaponSubstat);
-//
-//                tvName.setText(model.getName());
-//                tvType.setText(model.getType());
-//                tvRarity.setText(model.getRarity());
-//                tvSkills.setText(model.getSkill());
-//                tvATK.setText(model.getAtk());
-//                tvSubstat.setText(model.getSubstat());
-//
-//                imageView = findViewById(R.id.ivImage);
-//                Picasso.get().load(model.getImageURL()).into(imageView);
-                ArrayList<WeaponModel> weaponModels = new ArrayList<>();
-
-                weaponAdapter = new WeaponAdapter(WeaponsActivity.this, weaponModels);
+        ArrayList<WeaponModel> temp = new ArrayList<>();
+        for (int i=0; i < weaponModelsList.size(); i++){
+            WeaponModel weaponModel = weaponModelsList.get(i);
+            if (weaponModel.getName().toLowerCase().contains(etValue.toLowerCase())){
+                temp.add(weaponModel);
             }
-        };
-
-        listView.setAdapter(adapter);
+        }
+        weaponAdapter = new WeaponAdapter(this, temp);
+        listView.setAdapter(weaponAdapter);
     }
 
     private void setupListview(){
 
         dbRef = FirebaseDatabase.getInstance().getReference();
 
-        ArrayList<WeaponModel> weaponModels = new ArrayList<>();
+        weaponModelsList = new ArrayList<>();
 
         dbRef.child("Weapons").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot characterSnapshot: snapshot.getChildren()){
                     WeaponModel value = characterSnapshot.getValue(WeaponModel.class);
-                    weaponModels.add(value);
+                    weaponModelsList.add(value);
                 }
-                weaponAdapter = new WeaponAdapter(WeaponsActivity.this, weaponModels);
+                weaponAdapter = new WeaponAdapter(WeaponsActivity.this, weaponModelsList);
                 listView.setAdapter(weaponAdapter);
                 weaponAdapter.notifyDataSetChanged();
             }
