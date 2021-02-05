@@ -2,33 +2,23 @@ package com.example.genshininfoapp.ui.weapons;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ListAdapter;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.genshininfoapp.R;
 import com.example.genshininfoapp.adapters.WeaponAdapter;
-import com.example.genshininfoapp.models.WeaponDetailsModel;
 import com.example.genshininfoapp.models.WeaponModel;
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -51,7 +41,7 @@ public class WeaponsActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.lvWeapons);
 
-        etSearch = findViewById(R.id.etSearch);
+        etSearch = findViewById(R.id.etWeaponSearch);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -68,7 +58,7 @@ public class WeaponsActivity extends AppCompatActivity {
                 firebaseSearch(s.toString());
             }
         });
-        btnSearch = findViewById(R.id.btnSearch);
+        btnSearch = findViewById(R.id.btnWeaponSearch);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override

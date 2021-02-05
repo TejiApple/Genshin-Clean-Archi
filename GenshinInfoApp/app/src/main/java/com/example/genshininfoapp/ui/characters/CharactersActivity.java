@@ -4,12 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.genshininfoapp.adapters.CharactersAdapter;
 import com.example.genshininfoapp.R;
+import com.example.genshininfoapp.adapters.WeaponAdapter;
 import com.example.genshininfoapp.models.CharactersModel;
+import com.example.genshininfoapp.models.WeaponModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,10 +30,12 @@ public class CharactersActivity extends AppCompatActivity{
 
     final String url = "https://genshinlist.com/api/characters";
     ListView listView;
+    EditText etSearch;
+    Button btnSearch;
+
     HashMap<Integer,String> idToImageUrlMap = new HashMap<>();
-    ArrayList<CharactersModel> characters = new ArrayList<>();
+    ArrayList<CharactersModel> charactersModelsList;
     private CharactersAdapter genshinCharacterAdapter;
-    ArrayAdapter<String> adapter;
 
     DatabaseReference dbRef;
 
@@ -62,11 +71,52 @@ public class CharactersActivity extends AppCompatActivity{
 //        idToImageUrlMap.put(25,"https://cdn.mos.cms.futurecdn.net/ukoeRe945daYVR236Wr9Y6.jpg");
 //        idToImageUrlMap.put(27,"https://media.nichegamer.com/wp-content/uploads/2020/11/30151727/genshin-impact-11-30-20-3.jpg");
 
+        etSearch = findViewById(R.id.etCharacterSearch);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                firebaseSearch(s.toString());
+            }
+        });
+        btnSearch = findViewById(R.id.btnCharacterSearch);
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String etValue = etSearch.getText().toString();
+
+                firebaseSearch(etValue);
+            }
+        });
+
         listView = findViewById(R.id.lvCharacters);
 
 //        retrieveResult();
         setupListview();
     }
+
+    private void firebaseSearch(String etValue) {
+        ArrayList<CharactersModel> characterResult = new ArrayList<>();
+        for (int i=0; i < charactersModelsList.size(); i++){
+            CharactersModel charactersModel = charactersModelsList.get(i);
+            if (charactersModel.getName().toLowerCase().contains(etValue.toLowerCase())){
+                characterResult.add(charactersModel);
+            }
+        }
+        genshinCharacterAdapter = new CharactersAdapter(this, characterResult);
+        listView.setAdapter(genshinCharacterAdapter);
+    }
+
 
 //
 //    private void retrieveResult(){
@@ -125,16 +175,16 @@ public class CharactersActivity extends AppCompatActivity{
 //        genshinCharacterAdapter = new CharactersAdapter(this, characters);
 //        listView.setAdapter(genshinCharacterAdapter);
         dbRef = FirebaseDatabase.getInstance().getReference();
-        ArrayList<CharactersModel> charactersModels = new ArrayList<>();
+       charactersModelsList = new ArrayList<>();
 
             dbRef.child("Characters").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot characterSnapshot: snapshot.getChildren()){
                         CharactersModel value = characterSnapshot.getValue(CharactersModel.class);
-                        charactersModels.add(value);
+                        charactersModelsList.add(value);
                     }
-                    genshinCharacterAdapter = new CharactersAdapter(CharactersActivity.this, charactersModels);
+                    genshinCharacterAdapter = new CharactersAdapter(CharactersActivity.this, charactersModelsList);
                     listView.setAdapter(genshinCharacterAdapter);
                     genshinCharacterAdapter.notifyDataSetChanged();
                 }

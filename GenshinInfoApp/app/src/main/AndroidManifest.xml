@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GenshinInfoApp">
-        <activity android:name=".ui.weapons.WeaponDetailsActivity"></activity>
         <activity android:name=".ui.weapons.WeaponsActivity" />
         <activity android:name=".ui.domains.ArtifactsActivity" />
         <activity android:name=".ui.characters.CharactersActivity" />
