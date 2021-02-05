@@ -2,6 +2,7 @@ package com.example.genshininfoapp.ui.weapons;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ListAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,18 +11,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.genshininfoapp.R;
 import com.example.genshininfoapp.adapters.WeaponAdapter;
 import com.example.genshininfoapp.models.WeaponDetailsModel;
 import com.example.genshininfoapp.models.WeaponModel;
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -63,8 +68,35 @@ public class WeaponsActivity extends AppCompatActivity {
 
     private void firebaseSearch(String etValue) {
         dbRef = FirebaseDatabase.getInstance().getReference("Weapons");
-        Query firebaseSearch = dbRef.orderByChild("name").startAt(etValue).endAt(etValue + "\uf8ff");
-        
+        Query firebaseSearch = dbRef.orderByChild("name").startAt(etValue).endAt(etValue+"\uf8ff");
+
+        FirebaseListAdapter<WeaponModel> adapter = new FirebaseListAdapter<WeaponModel>(this,  WeaponModel.class, R.layout.item_weapons_list, firebaseSearch) {
+            @Override
+            protected void populateView(View v, WeaponModel model, int position) {
+
+                TextView tvName, tvType, tvRarity, tvSkills, tvATK, tvSubstat;
+                ImageView imageView;
+
+                tvName = findViewById(R.id.tvWeaponName);
+                tvType = findViewById(R.id.tvWeaponType);
+                tvRarity = findViewById(R.id.tvWeaponRarity);
+                tvSkills = findViewById(R.id.tvWeaponSkills);
+                tvATK = findViewById(R.id.tvWeaponATK);
+                tvSubstat = findViewById(R.id.tvWeaponSubstat);
+
+                tvName.setText(model.getName());
+                tvType.setText(model.getType());
+                tvRarity.setText(model.getRarity());
+                tvSkills.setText(model.getSkill());
+                tvATK.setText(model.getAtk());
+                tvSubstat.setText(model.getSubstat());
+
+                imageView = findViewById(R.id.ivImage);
+                Picasso.get().load(model.getImageURL()).into(imageView);
+            }
+        };
+
+        listView.setAdapter(adapter);
     }
 
     private void setupListview(){
