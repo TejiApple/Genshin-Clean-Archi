@@ -73,26 +73,29 @@ public class WeaponsActivity extends AppCompatActivity {
         FirebaseListAdapter<WeaponModel> adapter = new FirebaseListAdapter<WeaponModel>(this,  WeaponModel.class, R.layout.item_weapons_list, firebaseSearch) {
             @Override
             protected void populateView(View v, WeaponModel model, int position) {
+//
+//                TextView tvName, tvType, tvRarity, tvSkills, tvATK, tvSubstat;
+//                ImageView imageView;
+//
+//                tvName = findViewById(R.id.tvWeaponName);
+//                tvType = findViewById(R.id.tvWeaponType);
+//                tvRarity = findViewById(R.id.tvWeaponRarity);
+//                tvSkills = findViewById(R.id.tvWeaponSkills);
+//                tvATK = findViewById(R.id.tvWeaponATK);
+//                tvSubstat = findViewById(R.id.tvWeaponSubstat);
+//
+//                tvName.setText(model.getName());
+//                tvType.setText(model.getType());
+//                tvRarity.setText(model.getRarity());
+//                tvSkills.setText(model.getSkill());
+//                tvATK.setText(model.getAtk());
+//                tvSubstat.setText(model.getSubstat());
+//
+//                imageView = findViewById(R.id.ivImage);
+//                Picasso.get().load(model.getImageURL()).into(imageView);
+                ArrayList<WeaponModel> weaponModels = new ArrayList<>();
 
-                TextView tvName, tvType, tvRarity, tvSkills, tvATK, tvSubstat;
-                ImageView imageView;
-
-                tvName = findViewById(R.id.tvWeaponName);
-                tvType = findViewById(R.id.tvWeaponType);
-                tvRarity = findViewById(R.id.tvWeaponRarity);
-                tvSkills = findViewById(R.id.tvWeaponSkills);
-                tvATK = findViewById(R.id.tvWeaponATK);
-                tvSubstat = findViewById(R.id.tvWeaponSubstat);
-
-                tvName.setText(model.getName());
-                tvType.setText(model.getType());
-                tvRarity.setText(model.getRarity());
-                tvSkills.setText(model.getSkill());
-                tvATK.setText(model.getAtk());
-                tvSubstat.setText(model.getSubstat());
-
-                imageView = findViewById(R.id.ivImage);
-                Picasso.get().load(model.getImageURL()).into(imageView);
+                weaponAdapter = new WeaponAdapter(WeaponsActivity.this, weaponModels);
             }
         };
 
