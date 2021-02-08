@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GenshinInfoApp">
-        <activity android:name=".ui.weapons.WeaponsActivity" />
-        <activity android:name=".ui.domains.ArtifactsActivity" />
-        <activity android:name=".ui.characters.CharactersActivity" />
+        <activity android:name=".ui.weapons.WeaponsActivity"
+            android:label="Weapons"/>
+        <activity android:name=".ui.domains.ArtifactsActivity"
+            android:label="Artifacts"/>
+        <activity android:name=".ui.characters.CharactersActivity"
+            android:label="Characters"/>
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
