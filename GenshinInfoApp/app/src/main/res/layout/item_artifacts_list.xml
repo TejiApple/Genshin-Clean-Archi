@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="6dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@drawable/shape_layout"
+    android:elevation="5dp">
 
     <ImageView
         android:id="@+id/ivImage"

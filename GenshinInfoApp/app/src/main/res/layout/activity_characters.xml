@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#363535"
     tools:context=".ui.characters.CharactersActivity">
 
     <LinearLayout
@@ -18,16 +19,17 @@
 
         <EditText
             android:id="@+id/etCharacterSearch"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:padding="6dp"
+            android:background="@drawable/shape_search"
             android:hint="Search characters ..."/>
 
         <Button
             android:id="@+id/btnCharacterSearch"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@drawable/ic_search"/>
 
     </LinearLayout>
@@ -37,8 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:divider="#000"
-        android:dividerHeight="2sp"
+        android:divider="#363535"
+        android:dividerHeight="5sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llSearch" />
