@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import com.example.genshininfoapp.R;
 import com.example.genshininfoapp.adapters.WeaponAdapter;
 import com.example.genshininfoapp.models.WeaponModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,7 @@ public class WeaponsActivity extends AppCompatActivity {
     ListView listView;
     EditText etSearch;
     Button btnSearch;
+    FloatingActionButton floatingActionButton;
 
     private WeaponAdapter weaponAdapter;
     ArrayList<WeaponModel> weaponModelsList;
@@ -40,8 +43,10 @@ public class WeaponsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weapons);
 
         listView = findViewById(R.id.lvWeapons);
-
         etSearch = findViewById(R.id.etWeaponSearch);
+        btnSearch = findViewById(R.id.btnWeaponSearch);
+        floatingActionButton = findViewById(R.id.fabScrollUpWeapons);
+
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -58,7 +63,6 @@ public class WeaponsActivity extends AppCompatActivity {
                 firebaseSearch(s.toString());
             }
         });
-        btnSearch = findViewById(R.id.btnWeaponSearch);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +70,31 @@ public class WeaponsActivity extends AppCompatActivity {
                 String etValue = etSearch.getText().toString();
 
                 firebaseSearch(etValue);
+            }
+        });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listView != null){
+                    listView.smoothScrollToPosition(0);
+                }
+            }
+        });
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (firstVisibleItem > 2){
+                    floatingActionButton.setVisibility(view.VISIBLE);
+                } else {
+                    floatingActionButton.setVisibility(view.GONE);
+                }
             }
         });
 

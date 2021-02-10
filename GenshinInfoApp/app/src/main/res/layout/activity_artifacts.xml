@@ -35,15 +35,29 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lvArtifacts"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:divider="#363535"
-        android:dividerHeight="5sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llSearch" />
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/lvArtifacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:divider="#363535"
+            android:dividerHeight="5sp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabScrollUpArtifacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/lvArtifacts"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+            app:fabSize="mini"
+            />
+    </RelativeLayout>
 
 </LinearLayout>

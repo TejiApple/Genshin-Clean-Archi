@@ -76,6 +76,7 @@ public class CharactersActivity extends AppCompatActivity{
 
         etSearch = findViewById(R.id.etCharacterSearch);
         listView = findViewById(R.id.lvCharacters);
+        btnSearch = findViewById(R.id.btnCharacterSearch);
         floatingActionButton = findViewById(R.id.fabScrollUp);
 
         etSearch.addTextChangedListener(new TextWatcher() {
@@ -94,7 +95,6 @@ public class CharactersActivity extends AppCompatActivity{
                 firebaseSearch(s.toString());
             }
         });
-        btnSearch = findViewById(R.id.btnCharacterSearch);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
