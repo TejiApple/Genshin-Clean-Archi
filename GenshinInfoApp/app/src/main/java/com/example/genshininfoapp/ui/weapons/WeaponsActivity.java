@@ -91,9 +91,9 @@ public class WeaponsActivity extends AppCompatActivity {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if (firstVisibleItem > 2){
-                    floatingActionButton.setVisibility(view.VISIBLE);
+                    floatingActionButton.setVisibility(View.VISIBLE);
                 } else {
-                    floatingActionButton.setVisibility(view.GONE);
+                    floatingActionButton.setVisibility(View.GONE);
                 }
             }
         });
